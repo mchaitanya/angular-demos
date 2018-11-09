@@ -11,11 +11,15 @@ export class CrossCtrlVldnComponent {
     constructor() {
         this.form = new FormGroup({
             'curPwd': new FormControl('', Validators.required), 
-            'newPwd': new FormControl(''), 
+            'newPwd': new FormControl('', [
+                Validators.required, 
+                Validators.minLength(8)
+            ]), 
             'confirm': new FormControl('')
         });
     }
 
     get curPwd() { return this.form.get('curPwd'); }
+    get newPwd() { return this.form.get('newPwd'); }
 
 }

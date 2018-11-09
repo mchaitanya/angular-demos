@@ -14,7 +14,12 @@
     <div class="form-group row">
         <label for="new-pwd" class="col-md-3 col-form-label">New Password</label>
         <div class="col-md-9">
-            <input type="password" id="new-pwd" class="form-control" formControlName="newPwd">
+            <input type="password" id="new-pwd" class="form-control" 
+                [class.is-invalid]="newPwd.touched && newPwd.invalid" 
+                formControlName="newPwd">
+            <div class="invalid-feedback" *ngIf="newPwd.hasError('required') || newPwd.hasError('minlength')">
+                There must be at least 8 characters
+            </div>
         </div>
     </div>
     <div class="form-group row">
