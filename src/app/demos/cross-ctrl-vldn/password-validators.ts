@@ -44,4 +44,27 @@ export class PasswordValidators {
             return null;
         }
     }
+
+    static sameAs(field: string, fieldToCompareWith: string): ValidatorFn {
+        return (group: FormGroup): ValidationErrors|null => {
+            const value = group.value[field] || '';
+            const valueToCompareWith = group.value[fieldToCompareWith] || '';
+
+            const control = group.controls[field];
+            const errors = control.errors || {}; 
+            let newErrors = null;
+            if (valueToCompareWith !== '' && value !== valueToCompareWith) {
+                newErrors = Object.assign(errors, { 'notSame': true });
+            } else {
+                for (let e in errors) {
+                    if (errors.hasOwnProperty(e) && e !== 'notSame') {
+                        if (!newErrors) newErrors = { };
+                        newErrors[e] = errors[e];
+                    }
+                }
+            }
+            control.setErrors(newErrors);
+            return null;
+        }
+    }
 }

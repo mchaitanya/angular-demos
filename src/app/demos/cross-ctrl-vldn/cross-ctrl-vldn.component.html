@@ -40,11 +40,20 @@
     <div class="form-group row">
         <label for="confirm" class="col-md-3 col-form-label">Confirm New Password</label>
         <div class="col-md-9">
-            <input type="password" id="confirm" class="form-control" formControlName="confirm">
+            <input type="password" id="confirm" class="form-control" 
+                [class.is-invalid]="(confirm.touched || confirm.dirty) && confirm.invalid" 
+                formControlName="confirm">
+            <div class="invalid-feedback">
+                Entered value doesn't match the new password
+            </div>
         </div>
     </div>
     <!-- diagnostic dump -->
     <hr>
     <p><b>Form value</b></p>
     <pre>{{ form.value | json }}</pre>
+    <p><b>Confirm's status</b></p>
+    <pre>{{ confirm.status }}</pre>
+    <p><b>Confirm's errors</b></p>
+    <pre>{{ confirm.errors | json }}</pre>
 </form>
