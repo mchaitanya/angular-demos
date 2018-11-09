@@ -17,7 +17,8 @@ export class CrossCtrlVldnComponent {
                 Validators.minLength(8), 
                 PasswordValidators.containsUpperCase, 
                 PasswordValidators.containsLowerCase, 
-                PasswordValidators.containsDigit
+                PasswordValidators.containsDigit, 
+                PasswordValidators.containsSpecialChar(['!', '@', '#'])
             ]), 
             'confirm': new FormControl('')
         });

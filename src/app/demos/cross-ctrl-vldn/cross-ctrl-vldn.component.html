@@ -29,6 +29,9 @@
             <div class="invalid-feedback" *ngIf="newPwd.hasError('noDigit')">
                 There must be at least one digit
             </div>
+            <div class="invalid-feedback" *ngIf="newPwd.hasError('noSpecialChar')">
+                There must be at least one of the following: {{ newPwd.errors['specialChars'].join(', ') }}
+            </div>
         </div>
     </div>
     <div class="form-group row">
