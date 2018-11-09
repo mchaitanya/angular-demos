@@ -1,21 +1,25 @@
-<form class="w-75 mx-auto" ngNoForm>
+<form [formGroup]="form" class="w-75 mx-auto" novalidate>
     <h3>Change Password</h3>
     <div class="form-group row">
         <label for="cur-pwd" class="col-md-3 col-form-label">Current Password</label>
         <div class="col-md-9">
-            <input type="password" id="cur-pwd" class="form-control">
+            <input type="password" id="cur-pwd" class="form-control" formControlName="curPwd">
         </div>
     </div>
     <div class="form-group row">
         <label for="new-pwd" class="col-md-3 col-form-label">New Password</label>
         <div class="col-md-9">
-            <input type="password" id="new-pwd" class="form-control">
+            <input type="password" id="new-pwd" class="form-control" formControlName="newPwd">
         </div>
     </div>
     <div class="form-group row">
         <label for="confirm" class="col-md-3 col-form-label">Confirm New Password</label>
         <div class="col-md-9">
-            <input type="password" id="confirm" class="form-control">
+            <input type="password" id="confirm" class="form-control" formControlName="confirm">
         </div>
     </div>
+    <!-- diagnostic dump -->
+    <hr>
+    <p><b>Form value</b></p>
+    <pre>{{ form.value | json }}</pre>
 </form>
