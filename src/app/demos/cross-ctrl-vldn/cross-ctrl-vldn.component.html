@@ -4,7 +4,7 @@
         <label for="cur-pwd" class="col-md-3 col-form-label">Current Password</label>
         <div class="col-md-9">
             <input type="password" id="cur-pwd" class="form-control" 
-                [class.is-invalid]="curPwd.touched && curPwd.invalid" 
+                [class.is-invalid]="(curPwd.touched || curPwd.dirty) && curPwd.invalid" 
                 formControlName="curPwd">
             <div class="invalid-feedback">
                 Current password cannot be left blank
@@ -15,7 +15,7 @@
         <label for="new-pwd" class="col-md-3 col-form-label">New Password</label>
         <div class="col-md-9">
             <input type="password" id="new-pwd" class="form-control" 
-                [class.is-invalid]="newPwd.touched && newPwd.invalid" 
+                [class.is-invalid]="(newPwd.touched || newPwd.dirty) && newPwd.invalid" 
                 formControlName="newPwd">
             <div class="invalid-feedback" *ngIf="newPwd.hasError('required') || newPwd.hasError('minlength')">
                 There must be at least 8 characters
