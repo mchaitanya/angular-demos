@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { PasswordValidators } from './password-validators';
 
 @Component({
     selector: 'demo-cross-ctrl-vldn', 
@@ -13,7 +14,10 @@ export class CrossCtrlVldnComponent {
             'curPwd': new FormControl('', Validators.required), 
             'newPwd': new FormControl('', [
                 Validators.required, 
-                Validators.minLength(8)
+                Validators.minLength(8), 
+                PasswordValidators.containsUpperCase, 
+                PasswordValidators.containsLowerCase, 
+                PasswordValidators.containsDigit
             ]), 
             'confirm': new FormControl('')
         });

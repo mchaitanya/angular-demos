@@ -1,5 +1,5 @@
 <form [formGroup]="form" class="w-75 mx-auto" novalidate>
-    <h3>Change Password</h3>
+    <h3>Change Password <small class="text-muted">({{ form.status }})</small></h3>
     <div class="form-group row">
         <label for="cur-pwd" class="col-md-3 col-form-label">Current Password</label>
         <div class="col-md-9">
@@ -19,6 +19,15 @@
                 formControlName="newPwd">
             <div class="invalid-feedback" *ngIf="newPwd.hasError('required') || newPwd.hasError('minlength')">
                 There must be at least 8 characters
+            </div>
+            <div class="invalid-feedback" *ngIf="newPwd.hasError('noUpperCase')">
+                There must be at least one upper-case character
+            </div>
+            <div class="invalid-feedback" *ngIf="newPwd.hasError('noLowerCase')">
+                There must be at least one lower-case character
+            </div>
+            <div class="invalid-feedback" *ngIf="newPwd.hasError('noDigit')">
+                There must be at least one digit
             </div>
         </div>
     </div>
