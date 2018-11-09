@@ -2,11 +2,11 @@
     <header class="text-center my-3">
         <div><a routerLink="/">Back to Home</a></div>
         <div class="w-50 mx-auto">
-            <select class="form-control">
-                <option>Demo 1</option>
-                <option>Demo 2</option>
+            <select class="form-control" [formControl]="selectCtrl">
+                <option value="cross-ctrl-vldn">Cross Control Validation</option>
             </select>
         </div>
     </header>
-    <!-- demo cmp will go here -->
+    <hr>
+    <router-outlet></router-outlet>
 </div>
