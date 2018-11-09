@@ -21,7 +21,7 @@ export class CrossCtrlVldnComponent {
                 PasswordValidators.containsSpecialChar(['!', '@', '#'])
             ]), 
             'confirm': new FormControl('')
-        });
+        }, PasswordValidators.diffFrom('newPwd', 'curPwd'));
     }
 
     get curPwd() { return this.form.get('curPwd'); }
