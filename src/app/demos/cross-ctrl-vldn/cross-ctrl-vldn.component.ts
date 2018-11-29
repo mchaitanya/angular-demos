@@ -1,28 +1,28 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PasswordValidators } from './password-validators';
 
 @Component({
-    selector: 'demo-cross-ctrl-vldn', 
+    selector: 'demo-cross-ctrl-vldn',
     templateUrl: './cross-ctrl-vldn.component.html'
 })
-export class CrossCtrlVldnComponent { 
+export class CrossCtrlVldnComponent {
     form: FormGroup;
 
     constructor() {
         this.form = new FormGroup({
-            'curPwd': new FormControl('', Validators.required), 
+            'curPwd': new FormControl('', Validators.required),
             'newPwd': new FormControl('', [
-                Validators.required, 
-                Validators.minLength(8), 
-                PasswordValidators.containsUpperCase, 
-                PasswordValidators.containsLowerCase, 
-                PasswordValidators.containsDigit, 
+                Validators.required,
+                Validators.minLength(8),
+                PasswordValidators.containsUpperCase,
+                PasswordValidators.containsLowerCase,
+                PasswordValidators.containsDigit,
                 PasswordValidators.containsSpecialChar(['!', '@', '#'])
-            ]), 
+            ]),
             'confirm': new FormControl('')
         }, Validators.compose([
-            PasswordValidators.diffFrom('newPwd', 'curPwd'), 
+            PasswordValidators.diffFrom('newPwd', 'curPwd'),
             PasswordValidators.sameAs('confirm', 'newPwd')
         ]));
     }
