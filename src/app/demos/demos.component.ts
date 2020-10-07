@@ -11,8 +11,12 @@ export class DemosComponent implements OnInit {
     constructor(private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit() {
-        // the routes are of the form '/demos/demo-id'
-        const demoId = this.router.url.split('/')[2];
+        const url = this.router.url;
+        // the url can be of the form '/demos/demo-id#fragment'
+        const sliceStart = url.lastIndexOf('/') + 1;
+        const sliceEnd = url.includes('#') ? url.indexOf('#') : url.length;
+        const demoId = url.slice(sliceStart, sliceEnd);
+        
         this.selectCtrl.setValue(demoId);
         this.selectCtrl.valueChanges
             .subscribe(v => this.router.navigate(['./', v], { relativeTo: this.route }));
