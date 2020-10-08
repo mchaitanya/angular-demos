@@ -1,1 +1,12 @@
-<p>Reusable modals demo goes here ...</p>
+<h3>Reusable Modals</h3>
+<div class="btn-toolbar" role="toolbar">
+    <button type="button" class="btn btn-secondary" (click)="displayWarning(warning)">Display warning</button>
+</div>
+
+<ng-template #warning>
+    <p>This is a <em>fancy</em> multi-line warning</p>
+    <ul>
+        <li><strong>Exercise</strong></li>
+        <li class="text-danger">Caution</li>
+    </ul>
+</ng-template>
