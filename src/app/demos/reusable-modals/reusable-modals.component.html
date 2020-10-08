@@ -1,6 +1,7 @@
 <h3>Reusable Modals</h3>
 <div class="btn-toolbar" role="toolbar">
-    <button type="button" class="btn btn-secondary" (click)="displayWarning(warning)">Display warning</button>
+    <button type="button" class="btn btn-secondary mr-2" (click)="openModal('Warning', warning)">Display warning</button>
+    <button type="button" class="btn btn-secondary" (click)="openModal('Settings', settings, settingsActions)">Display settings</button>
 </div>
 
 <ng-template #warning>
@@ -9,4 +10,12 @@
         <li><strong>Exercise</strong></li>
         <li class="text-danger">Caution</li>
     </ul>
+</ng-template>
+
+<ng-template #settings>
+    <p>Settings here ...</p>
+</ng-template>
+
+<ng-template #settingsActions>
+    <button type="button" class="btn btn-success" (click)="closeModal()">Okay</button>
 </ng-template>

@@ -11,11 +11,16 @@ export class ReusableModalsComponent {
         //
     }
 
-    displayWarning(warningTmpl: TemplateRef<any>) {
+    openModal(title: string, bodyTmpl: TemplateRef<any>, footerTmpl: TemplateRef<any>) {
         this.modalService.openModal({
-            title: 'Warning', 
-            body: warningTmpl
+            title: title, 
+            body: bodyTmpl, 
+            footer: footerTmpl
         });
+    }
+
+    closeModal() {
+        this.modalService.closeModal();
     }
 
 }
