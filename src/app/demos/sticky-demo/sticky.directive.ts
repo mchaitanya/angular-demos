@@ -2,6 +2,7 @@ import { Directive, ElementRef, Renderer2, Inject, OnInit, OnDestroy } from '@an
 import { DOCUMENT } from '@angular/common';
 
 import { fromEvent, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Directive({
     selector: '[sticky]'
@@ -21,6 +22,7 @@ export class StickyDirective implements OnInit, OnDestroy {
             const window: Window = this.document.defaultView;
             this.sub
              = fromEvent(window, 'scroll')
+                .pipe(debounceTime(200))
                 .subscribe((ev: Event) => console.log(ev));
         }
 
