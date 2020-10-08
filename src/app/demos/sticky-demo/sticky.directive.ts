@@ -15,8 +15,13 @@ export class StickyDirective implements OnInit, OnDestroy {
     }
     
     ngOnInit() {
-        const host = <HTMLElement> this.el.nativeElement;
-        console.log('sticky directive attached to ' + host.nodeName);
+        // we insert an empty div before the host element
+        // the purpose of the div is to mark the scroll position on crossing which we manipulate the style of the host element
+        // if we're scrolling down, and we scroll past the marker, we'll fix the host
+        // if we're scrolling up, and we scroll past the marker, we'll unfix the host
+        const marker: HTMLElement = this.renderer.createElement('div');
+        const parent: HTMLElement = this.renderer.parentNode(this.el.nativeElement);
+        this.renderer.insertBefore(parent, marker, this.el.nativeElement);
 
         if (this.document) {
             const window: Window = this.document.defaultView;
