@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Renderer2, Inject, OnInit, OnDestroy } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
-import { fromEvent, Subscription } from 'rxjs';
+import { fromEvent, merge, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 @Directive({
@@ -26,7 +26,7 @@ export class StickyDirective implements OnInit, OnDestroy {
         if (this.document) {
             const window: Window = this.document.defaultView;
             this.sub
-             = fromEvent(window, 'scroll')
+             = merge(fromEvent(window, 'scroll'), fromEvent(window, 'resize'))
                 .pipe(debounceTime(200))
                 .subscribe(_ => {
                     if (window.pageYOffset < marker.offsetTop) {
