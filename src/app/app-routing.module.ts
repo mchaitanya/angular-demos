@@ -33,10 +33,13 @@ const routes: Routes = [
 // setting `onSameUrlNavigation` to 'reload' retriggers the router events when you try to reload the same route
 // the effect is to scroll to the anchor when you click the fragment link a second time 
 //https://www.bennadel.com/blog/3545-enabling-the-second-click-of-a-routerlink-fragment-using-onsameurlnavigation-reload-in-angular-7-1-3.htm
+// set `useHash` to true - GitHub Pages doesn't support the redirect to index.html
+// https://dev.to/maxime1992/comment/g0i7
 const routerOptions: ExtraOptions = {
     anchorScrolling: 'enabled', // scrolls to the anchor element when the URL has a fragment
     scrollOffset: [0, 56], // scroll offset the router will use when scrolling to the element
-    onSameUrlNavigation: 'reload'
+    onSameUrlNavigation: 'reload', 
+    useHash: true
 };
 
 @NgModule({
