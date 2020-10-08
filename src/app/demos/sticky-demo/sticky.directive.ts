@@ -5,9 +5,11 @@ import { fromEvent, merge, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 @Directive({
-    selector: '[sticky]'
+    selector: '[sticky]', 
+    exportAs: 'sticky'
 })
 export class StickyDirective implements OnInit, OnDestroy {
+    public isPinned = false;
     private sub: Subscription;
 
     constructor(private el: ElementRef, private renderer: Renderer2, @Inject(DOCUMENT) private document: Document) {
@@ -31,12 +33,14 @@ export class StickyDirective implements OnInit, OnDestroy {
                 .subscribe(_ => {
                     if (window.pageYOffset < marker.offsetTop) {
                         // we have yet to scroll past the marker
+                        this.isPinned = false;
                         this.renderer.setProperty(
                             this.el.nativeElement, 
                             'style', 
                             'position:static; width:auto'
                         );
                     } else {
+                        this.isPinned = true;
                         this.renderer.setProperty(
                             this.el.nativeElement, 
                             'style', 
