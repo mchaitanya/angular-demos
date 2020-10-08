@@ -14,7 +14,7 @@ export class ReusableModalsComponent {
         this.fontSizeCtrl = new FormControl(16);
     }
 
-    openModal(title: string, bodyTmpl: TemplateRef<any>, footerTmpl: TemplateRef<any>) {
+    openModal(title: string, bodyTmpl: TemplateRef<any>, footerTmpl?: TemplateRef<any>) {
         this.modalService.openModal({
             title: title, 
             body: bodyTmpl, 
