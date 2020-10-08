@@ -1,0 +1,24 @@
+<router-outlet></router-outlet>
+
+<div class="container my-3">
+    <button type="button" class="btn btn-block btn-secondary" (click)="openModal()">Open modal</button>
+</div>
+
+<!-- the modal -->
+<div class="modal" style="background:rgba(128,128,128,0.4)" [style.display]="isModalOpen ? 'block' : 'none'">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">Modal body</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Do something</button>
+                <button type="button" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
