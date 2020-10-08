@@ -1,7 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ModalDfn, ModalService } from './demos/reusable-modals/modal.service';
 
 @Component({
   selector: 'app-root',
-  template: '<router-outlet></router-outlet>'
+  templateUrl: './app.component.html'
 })
-export class AppComponent { }
+export class AppComponent implements OnInit { 
+  modalDfn$: Observable<ModalDfn>;
+
+  constructor(private modalService: ModalService) {
+    //
+  }
+
+  ngOnInit() {
+    this.modalDfn$ = this.modalService.modalDfn$;
+  }
+
+  closeModal() {
+    this.modalService.closeModal();
+  }
+
+}

@@ -5,12 +5,14 @@ import { HomeComponent } from './home/home.component';
 import { DemosComponent } from './demos/demos.component';
 import { CrossCtrlVldnComponent } from './demos/cross-ctrl-vldn/cross-ctrl-vldn.component';
 import { StickyDemoComponent } from './demos/sticky-demo/sticky-demo.component';
+import { ReusableModalsComponent } from './demos/reusable-modals/reusable-modals.component';
 
 export const routedCmps = [
     HomeComponent,
     DemosComponent,
     CrossCtrlVldnComponent, 
-    StickyDemoComponent
+    StickyDemoComponent, 
+    ReusableModalsComponent
 ];
 
 const routes: Routes = [
@@ -20,6 +22,7 @@ const routes: Routes = [
         children: [
             { path: 'cross-ctrl-vldn', component: CrossCtrlVldnComponent }, 
             { path: 'sticky-demo', component: StickyDemoComponent }, 
+            { path: 'reusable-modals', component: ReusableModalsComponent }, 
             { path: '', redirectTo: '/home', pathMatch: 'full'}
         ]
     },

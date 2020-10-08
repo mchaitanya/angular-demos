@@ -1,0 +1,30 @@
+<h3>Reusable Modals</h3>
+<div class="btn-toolbar" role="toolbar">
+    <button type="button" class="btn btn-secondary mr-2" (click)="openModal('Warning', warning)">Display warning</button>
+    <button type="button" class="btn btn-secondary" (click)="openModal('Settings', settings, settingsActions)">Display settings</button>
+</div>
+
+<p class="my-2" [style.fontSize.px]="fontSizeCtrl.value">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    Quia totam dolorem esse doloremque quos inventore omnis alias at blanditiis, 
+    tempora dolore voluptatum, eveniet cupiditate eius vero assumenda maiores deleniti quaerat.
+</p>
+
+<ng-template #warning>
+    <p>This is a <em>fancy</em> multi-line warning</p>
+    <ul>
+        <li><strong>Exercise</strong></li>
+        <li class="text-danger">Caution</li>
+    </ul>
+</ng-template>
+
+<ng-template #settings>
+    <div class="form-group">
+        <label for="size">Font size: {{ fontSizeCtrl.value }}px</label>
+        <input type="range" min="8" max="36" step="2" id="size" class="form-control-range" [formControl]="fontSizeCtrl">
+    </div>
+</ng-template>
+
+<ng-template #settingsActions>
+    <button type="button" class="btn btn-success" (click)="closeModal()">Okay</button>
+</ng-template>
