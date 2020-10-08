@@ -28,7 +28,14 @@ export class StickyDirective implements OnInit, OnDestroy {
             this.sub
              = fromEvent(window, 'scroll')
                 .pipe(debounceTime(200))
-                .subscribe((ev: Event) => console.log(ev));
+                .subscribe(_ => {
+                    if (window.pageYOffset < marker.offsetTop) {
+                        // we have yet to scroll past the marker
+                        this.renderer.setStyle(this.el.nativeElement, 'position', 'static');
+                    } else {
+                        this.renderer.setStyle(this.el.nativeElement, 'position', 'fixed');
+                    }
+                });
         }
 
     }
