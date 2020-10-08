@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { DemosComponent } from './demos/demos.component';
 import { CrossCtrlVldnComponent } from './demos/cross-ctrl-vldn/cross-ctrl-vldn.component';
+import { StickyDemoComponent } from './demos/sticky-demo/sticky-demo.component';
 
 export const routedCmps = [
     HomeComponent,
     DemosComponent,
-    CrossCtrlVldnComponent
+    CrossCtrlVldnComponent, 
+    StickyDemoComponent
 ];
 
 const routes: Routes = [
@@ -16,7 +18,8 @@ const routes: Routes = [
         path: 'demos',
         component: DemosComponent,
         children: [
-            { path: 'cross-ctrl-vldn', component: CrossCtrlVldnComponent },
+            { path: 'cross-ctrl-vldn', component: CrossCtrlVldnComponent }, 
+            { path: 'sticky-demo', component: StickyDemoComponent }, 
             { path: '', redirectTo: '/home', pathMatch: 'full'}
         ]
     },
@@ -25,8 +28,19 @@ const routes: Routes = [
     { path: '**', redirectTo: '/home' }
 ];
 
+// anchor scrolling is disabled by default, we have to configure the router to make it work
+// see: https://www.geekstrick.com/fragment-url-in-angular-8/
+// setting `onSameUrlNavigation` to 'reload' retriggers the router events when you try to reload the same route
+// the effect is to scroll to the anchor when you click the fragment link a second time 
+//https://www.bennadel.com/blog/3545-enabling-the-second-click-of-a-routerlink-fragment-using-onsameurlnavigation-reload-in-angular-7-1-3.htm
+const routerOptions: ExtraOptions = {
+    anchorScrolling: 'enabled', // scrolls to the anchor element when the URL has a fragment
+    scrollOffset: [0, 56], // scroll offset the router will use when scrolling to the element
+    onSameUrlNavigation: 'reload'
+};
+
 @NgModule({
-    imports: [ RouterModule.forRoot(routes) ],
+    imports: [ RouterModule.forRoot(routes, routerOptions) ],
     exports: [ RouterModule ]
 })
 export class AppRoutingModule { }
