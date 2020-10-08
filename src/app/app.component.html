@@ -1,23 +1,33 @@
 <router-outlet></router-outlet>
 
 <div class="container my-3">
-    <button type="button" class="btn btn-block btn-secondary" (click)="openModal()">Open modal</button>
+    <button type="button" class="btn btn-block btn-secondary" (click)="openModal('Modal title', modalBody, modalFooter)">Open modal</button>
 </div>
 
-<!-- the modal -->
-<div class="modal" style="background:rgba(128,128,128,0.4)" [style.display]="isModalOpen ? 'block' : 'none'">
+<!-- modal parts -->
+<ng-template #modalBody>Modal body</ng-template>
+<ng-template #modalFooter>
+    <ng-container>
+        <button type="button" class="btn btn-primary">Do something</button>
+        <button type="button" class="btn btn-secondary">Cancel</button>
+    </ng-container>
+</ng-template>
+
+<!-- the modal skeleton -->
+<div class="modal" style="display:block; background:rgba(128,128,128,0.4)" *ngIf="modalDfn">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title">{{ modalDfn.title }}</h5>
                 <button type="button" class="close" aria-label="Close" (click)="closeModal()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">Modal body</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Do something</button>
-                <button type="button" class="btn btn-secondary">Cancel</button>
+            <div class="modal-body">
+                <ng-container *ngTemplateOutlet="modalDfn.body"></ng-container>
+            </div>
+            <div class="modal-footer" *ngIf="modalDfn.footer">
+                <ng-container *ngTemplateOutlet="modalDfn.footer"></ng-container>
             </div>
         </div>
     </div>
