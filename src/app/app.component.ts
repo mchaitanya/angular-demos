@@ -1,23 +1,20 @@
-import { Component, TemplateRef, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, TemplateRef, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ModalDfn, ModalService } from './demos/reusable-modals/modal.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent implements OnInit, OnDestroy { 
-  modalDfn: ModalDfn;
-  sub: Subscription;
+export class AppComponent implements OnInit { 
+  modalDfn$: Observable<ModalDfn>;
 
   constructor(private modalService: ModalService) {
     //
   }
 
   ngOnInit() {
-    this.sub
-     = this.modalService.modalDfn$
-        .subscribe((modalDfn: ModalDfn) => this.modalDfn = modalDfn);
+    this.modalDfn$ = this.modalService.modalDfn$;
   }
 
   openModal(title: string, modalBody: TemplateRef<any>, modalFooter: TemplateRef<any>) {
@@ -30,12 +27,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   closeModal() {
     this.modalService.closeModal();
-  }
-
-  ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
   }
 
 }

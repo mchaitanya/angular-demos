@@ -14,7 +14,7 @@
 </ng-template>
 
 <!-- the modal skeleton -->
-<div class="modal" style="display:block; background:rgba(128,128,128,0.4)" *ngIf="modalDfn">
+<div class="modal" style="display:block; background:rgba(128,128,128,0.4)" *ngIf="(modalDfn$|async) as modalDfn">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
