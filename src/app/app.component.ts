@@ -17,14 +17,6 @@ export class AppComponent implements OnInit {
     this.modalDfn$ = this.modalService.modalDfn$;
   }
 
-  openModal(title: string, modalBody: TemplateRef<any>, modalFooter: TemplateRef<any>) {
-    this.modalService.openModal({
-      title: title, 
-      body: modalBody, 
-      footer: modalFooter
-    });
-  }
-
   closeModal() {
     this.modalService.closeModal();
   }
