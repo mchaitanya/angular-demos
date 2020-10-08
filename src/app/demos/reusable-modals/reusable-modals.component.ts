@@ -1,4 +1,5 @@
 import { Component, TemplateRef } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 import { ModalService } from './modal.service';
 
@@ -7,8 +8,10 @@ import { ModalService } from './modal.service';
     templateUrl: './reusable-modals.component.html'
 })
 export class ReusableModalsComponent {
+    fontSizeCtrl: FormControl;
+
     constructor(private modalService: ModalService) {
-        //
+        this.fontSizeCtrl = new FormControl(16);
     }
 
     openModal(title: string, bodyTmpl: TemplateRef<any>, footerTmpl: TemplateRef<any>) {
