@@ -5,6 +5,7 @@ import { AppRoutingModule, routedCmps } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { StickyDirective } from './demos/sticky-demo/sticky.directive';
+import { ModalService } from './demos/reusable-modals/modal.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { StickyDirective } from './demos/sticky-demo/sticky.directive';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
